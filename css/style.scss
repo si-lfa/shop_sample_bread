@@ -1,0 +1,337 @@
+// 変数の定義 =================================
+$mainFontSize: 2rem;
+$mainFontFamily: "Mate SC", serif;
+$accentColor: #499149;
+
+// mixinの定義 =================================
+@mixin mobile {
+  //mobile-size
+  @media (max-width: 900px) {
+    @content;
+  }
+}
+@mixin desktop {
+  //mobile-size
+  @media (min-width: 901px) {
+    @content;
+  }
+}
+/*
+メディアクエリ =============== */
+@include mobile { // モバイルサイズ
+
+} // ============================
+
+// 一般設定のCSS =================================
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  font-size: 100%;
+  padding: 0;
+}
+body {
+  font-family: "M PLUS 1p", sans-serif;
+  font-weight: 800;
+  background-color: #fff;
+}
+img {
+  //画像_CSS
+  max-width: 80%;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.5));
+  border-radius: 5%;
+}
+
+// CSS ここから入力 =================================
+.wrap {
+  // ラップ_サイズ指定
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 4%;
+}
+.bg-img {
+  // 背景画像_サイズ指定
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.site-ttl {
+  //サイトタイトル_書式設定
+  font-family: $mainFontFamily;
+}
+.mobile_br{
+  /*
+  メディアクエリ =============== */
+  @include desktop() { // モバイルサイズ
+    display: none;
+} // ===========================
+}
+
+// ヘッダー部分=================================
+#top-bg {
+  // トップ背景
+  background-image: url("../img/pan_img_01.jpg");
+  height: 100vh;
+}
+
+header {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  height: 10vh;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  /*
+  メディアクエリ =============== */
+  @include mobile {
+    //モバイルサイズ
+    flex-direction: column;
+    height: 80px;
+    justify-content: center;
+  } // ============================
+
+  & ul {
+    display: flex;
+
+    & li a {
+      font-family: $mainFontFamily;
+      font-size: $mainFontSize;
+      margin: 15px;
+      /*
+      メディアクエリ =============== */
+      @include mobile {
+        font-size: 1.25rem;
+      } // ============================
+    }
+  }
+}
+
+h1 {
+  font-family: $mainFontFamily;
+  font-size: 3em;
+  color: $accentColor;
+  /*
+  メディアクエリ =============== */
+  @include mobile {
+    // モバイルサイズ
+    font-size: 2rem;
+  } // ============================
+}
+
+// メイン部分=================================
+section {
+  font-size: 1.25rem;
+  max-width: 90%;
+  text-align: center;
+  /*
+  メディアクエリ =============== */
+  @include mobile {
+    // モバイルサイズ
+    font-size: 1rem;
+  } // ============================
+
+  & p {
+    display: inline-block;
+    line-height: 3rem;
+    margin: 0 auto;
+    text-align: left;
+    width: 80%;
+    /*
+    メディアクエリ =============== */
+    @include mobile {
+      // モバイルサイズ
+      line-height: 2rem;
+    } // ============================
+  }
+
+  & .txt-area {
+    padding: 15% 0 2% 0;
+
+    h2 {
+      // text-align: center;
+      border-bottom: 2px dashed $accentColor;
+      font-size: $mainFontSize;
+      letter-spacing: 0.5rem;
+      margin-bottom: 2rem;
+      overflow-wrap: break-word;
+      padding-bottom: 2rem;
+      @include mobile {
+        // モバイルサイズ
+        font-size: 1.25rem;
+      }
+    }
+
+    p {
+      // h2見出し直下_テキスト設定
+      padding-bottom: 2rem;
+      width: 90%;
+      /*
+      メディアクエリ =============== */
+      @include mobile {
+        // モバイルサイズ
+        width: 80%;
+      } // ============================
+    }
+  }
+
+  & .grid-container {
+    // コンテナ部分
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr 1fr;
+    /*
+    メディアクエリ =============== */
+    @include mobile {
+      // モバイルサイズ
+      grid-template-columns: 1fr;
+    } // ============================
+
+    h3 {
+      font-size: 1.5rem;
+      letter-spacing: 0.5rem;
+      margin: 2rem;
+      padding: 2rem 0 0.5rem 0;
+      position: relative;
+      /*
+      メディアクエリ =============== */
+      @include mobile {
+        font-size: 1.15rem;
+      } // ============================
+    }
+
+    h3::after {
+      // ボーダー_レシピ
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      content: "";
+      background-image: -webkit-repeating-linear-gradient(
+        135deg,
+        $accentColor,
+        $accentColor 1px,
+        transparent 2px,
+        transparent 5px
+      );
+      background-image: repeating-linear-gradient(
+        -45deg,
+        $accentColor,
+        $accentColor 1px,
+        transparent 2px,
+        transparent 5px
+      );
+      background-size: 7px 7px;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+  }
+}
+
+// ショップ部分=================================
+#shop-bg {
+  background-image: url("../img/pan_img_store.jpg");
+  -webkit-clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 95%);
+  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 95%);
+  height: 90vh;
+  margin: 10rem 0 4rem 0;
+  position: relative;
+}
+
+#shop-info {
+  // ショップ_テキスト部分
+  background-color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  max-width: 80%;
+  padding: 3rem 2rem;
+  position: absolute;
+  text-align: left;
+  top: 5rem;
+  /*
+  メディアクエリ =============== */
+  @include mobile { // モバイルサイズ
+    max-width: 90%;
+    font-size: 0.85rem;
+  } // ============================
+
+  & h2 {
+    border-bottom: 2px dashed $accentColor;
+    font-size: $mainFontSize;
+    padding-bottom: 1rem;
+  }
+
+  & table {
+    margin-top: 1rem;
+  }
+}
+
+// Googleマップ部分 =================================
+iframe {
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+// フッター部分 =================================
+footer {
+  background-color: $accentColor;
+}
+
+.footer {
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 1rem;
+  height: 350px;
+  gap: 1rem;
+  margin-top: auto;
+  justify-content: space-between;
+  /*
+  メディアクエリ =============== */
+  @include mobile {
+    // モバイルサイズ
+    grid-template-columns: 1fr;
+    height: auto;
+  } // ============================
+
+  & .footer-contents {
+    font-size: 0.75rem;
+    line-height: 1.5rem;
+    padding: 1rem;
+
+    .footer-ttl {
+      font-size: 1.2rem;
+      border-bottom: 2px dashed #fff;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+    }
+
+    table {
+      color: #fff;
+      font-size: 0.85rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 2rem;
+      /*
+      メディアクエリ =============== */
+      @include mobile {
+        // モバイルサイズ
+        font-size: 0.95rem;
+      } // ============================
+    }
+  }
+}
+
+// コピーライト =================================
+.small {
+  text-align: center;
+  color: #fff;
+  padding-bottom: 3px;
+}
